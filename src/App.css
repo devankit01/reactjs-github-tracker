@@ -124,8 +124,6 @@ nav {
 }
 .user__info__details{
   width: 180px;
-
-
 }
 .user__info__details img{
   width: 70px;
@@ -165,6 +163,26 @@ nav {
   border-radius: 3px;
   
 }
+.repo__card{
+  display: flex;
+  margin-top: 6px;
+}
+.repo__card .icon{
+  font-size: 28px;
+  margin: 0 6px;
+}
+.repo__info h5{
+  font-size: 16px;
+  margin: 0 6px;
+  margin-bottom: -5px;
+
+}
+.repo__info a{
+  margin: 0 6px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
 @media only screen and (max-width: 800px) {
   .social__container {
     align-items: center;
@@ -175,7 +193,6 @@ nav {
     margin: 20px 0px;
     text-align: center;
     height: auto;
-    /* border:2px solid #000; */
   }
   .git__search {
     padding: 6px 12px;
@@ -187,7 +204,6 @@ nav {
     width: 20%;
   }
   .info__card {
-    /* flex-direction: column; */
     text-align: center;
     margin: 10px 5px;
     padding: 10px 20px;
@@ -202,7 +218,6 @@ nav {
 
     background-color: white;
     padding: 10px 12px;
-    /* border: 1px solid #000; */
     width: 100%;
     margin: 10px 0px;
   }
