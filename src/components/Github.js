@@ -1,7 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import Repo from './Repo';
 function Github() {
   const [search, setSearch] = useState("devankit01");
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
+  const [user, setUser] = useState("");
+  const [follower, setFollower] = useState(0);
+  const [following, setFollowing] = useState(0);
+  const [avatar, setAvatar] = useState("");
+  const [repos, setRepos] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,11 +17,39 @@ function Github() {
     getData();
   };
 
-  const getData = async (search) => {
-    const response = await fetch(`https://api.github.com/users/${search}`);
-    const data = await response.json();
-    console.log(data);
-  };
+  function getData() {
+    const xhr = new XMLHttpRequest();
+    const url = `https://api.github.com/users/${search}`;
+    xhr.open("GET", url, true);
+    xhr.onload = function () {
+      const data = JSON.parse(this.response);
+      
+      console.log(data);
+      setName(data.name);
+      setBio(data.bio);
+      setUser(data.login);
+      setFollower(data.followers);
+      setFollowing(data.following);
+      setAvatar(data.avatar_url);
+     getRepos();
+    };
+
+    xhr.send();
+  }
+
+  function getRepos() {
+    const xhr = new XMLHttpRequest();
+    const url = `https://api.github.com/users/${search}/repos`;
+    xhr.open("GET", url, true);
+    xhr.onload = function () {
+      const data = JSON.parse(this.response);
+      console.log(data);
+   setRepos(data);
+
+    };
+
+    xhr.send();
+  }
 
   return (
     <div>
@@ -39,7 +75,7 @@ function Github() {
                 <i class="fas fa-atlas"></i>
               </div>
               <div className="info__content__text">
-                <h3>52</h3>
+                <h3>{repos.length}</h3>
                 <span className="text__light">Repos</span>
               </div>
             </div>
@@ -50,7 +86,7 @@ function Github() {
                 <i class="fa fa-users"></i>
               </div>
               <div className="info__content__text">
-                <h3>10</h3>
+                <h3>{follower}</h3>
                 <span className="text__light">Followers</span>
               </div>
             </div>
@@ -60,7 +96,7 @@ function Github() {
                 <i class="far fa-user"></i>
               </div>
               <div className="info__content__text">
-                <h3>2</h3>
+                <h3>{following}</h3>
                 <span className="text__light">Following</span>
               </div>
             </div>
@@ -80,16 +116,12 @@ function Github() {
         <div className="git__user">
           <div className="user__info">
             <div className="user__info__details">
-              <img
-                src="https://avatars.githubusercontent.com/u/1?v=4"
-                alt=""
-                style={{ float: "left" }}
-              ></img>
+              <img src={avatar} alt="" style={{ float: "left" }}></img>
               <b>
-                <span style={{ float: "right" }}>Ankit Gupta</span>
+                <span style={{ float: "right" }}>{name}</span>
               </b>
               <p class="text__light" style={{ float: "right" }}>
-                @devankit01
+                @{user}
               </p>
             </div>
             <br />
@@ -97,9 +129,7 @@ function Github() {
             <br />
 
             <div className="user__bio">
-              <span>
-                Python Developer | JavaScript Developer | Front end Dev
-              </span>
+              <span>{bio}</span>
 
               <div className="user__extra">
                 <p>
@@ -118,17 +148,21 @@ function Github() {
           <div className="user__repos">
             <h4>Repositories</h4>
             <div className="repos">
-              <div className="repo__card">
+              <p>{repos.length}</p>
+              {repos.map((repo) => {
+                <div className="repo__card">
                 <div className="icon">
                   <i class="fab fa-codepen"></i>
                 </div>
                 <div className="repo__info">
-                  <h5>30daysofcode</h5>
+                  <h5>{repo.name}</h5>
                   <a href="" className="text_light">
                     Clone now &rarr;
                   </a>
                 </div>
               </div>
+              })}
+              
             </div>
           </div>
         </div>
