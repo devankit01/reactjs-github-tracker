@@ -123,7 +123,8 @@ nav {
   width: 48%;
 }
 .user__info__details{
-  width: 180px;
+  width: 200px;
+  /* margin-left: -20px; */
 }
 .user__info__details img{
   width: 70px;
@@ -135,11 +136,11 @@ nav {
   margin-top:15px;
 }
 .user__info__details p{
-  margin-right: 20px;
+  margin-right: 25px;
 }
 
 .user__bio{
-  display: block;
+  display: inline-block;
   font-size: 14px;
   margin:6px 10px;
   font-weight: 500;
