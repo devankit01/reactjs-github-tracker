@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <p>ReactJS Social Media Tracker</p>
+        <p>ReactJS Github Tracker</p>
       </nav>
 
       <BrowserRouter>
@@ -24,7 +24,7 @@ function App() {
           </div>
         </a>
 
-        <a href="/linkdein">
+        {/* <a href="/linkdein">
           <div className="social__card">
           <div className="social__icon">  <i class="fa fa-linkedin"></i></div><p>LinkedIn</p>
           </div>
@@ -41,7 +41,7 @@ function App() {
           <div className="social__card">
           <div className="social__icon">  <i class="fa fa-facebook"></i></div><p>Facebook</p>
           </div>
-        </a>
+        </a> */}
       </div>
         </Route>
       </Switch>
